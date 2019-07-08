@@ -1,0 +1,33 @@
+---
+title: "Developing Data Products week 2"
+author: "Jeroen van Rooij"
+date: "8 juli 2019"
+output: html_document
+---
+
+```{r setup, echo = FALSE}
+library(leaflet)
+library(dplyr)
+```
+
+```{r, echo = FALSE}
+
+data <- read.csv("https://simplemaps.com/static/data/country-cities/nl/nl.csv")
+
+```
+
+```{r pressure, echo=FALSE}
+      map <- data %>% 
+          leaflet() %>% 
+          addTiles() %>% 
+          addMarkers(lat = data$lat, lng = data$lng, popup = data$city , 
+                     clusterOptions = markerClusterOptions()
+                     )
+```
+
+```{r, echo = FALSE}
+map
+
+```
+
+This is a map of all municipalities in the Netherlands 
